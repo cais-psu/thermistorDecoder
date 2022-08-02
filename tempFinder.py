@@ -1,8 +1,10 @@
+import math
+
 import numpy as np
 import csv
 
 
-def temperatureFinder(inputReading, adcBits=0, adcMaxVoltage = 0, pullupValue=100, vIn=3.3, thermistorValuesFilename="thermistorCurve.csv"):
+def temperatureFinder(inputReading, adcBits=0, adcMaxVoltage=0, pullupValue=100, vIn=3.3, thermistorValuesFilename="thermistorCurve.csv"):
     """
     Gets the temperature of a thermistor given the voltage of a pulled-up analog input pin.
 
@@ -19,8 +21,7 @@ def temperatureFinder(inputReading, adcBits=0, adcMaxVoltage = 0, pullupValue=10
     if adcBits == 0:
         inputVoltage = inputReading
     else:
-        inputVoltage = (inputReading / (2 ^ adcBits)) * adcMaxVoltage
-
+        inputVoltage = (inputReading / (math.pow(2, adcBits))) * adcMaxVoltage
     # Get resistance of thermistor
     rTherm = (inputVoltage * pullupValue) / (vIn - inputVoltage)
     # print("Thermistor reads %s kOhms" % rTherm)
