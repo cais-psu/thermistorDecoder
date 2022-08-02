@@ -29,7 +29,7 @@ def temperatureFinder(inputReading, adcBits=0, adcMaxVoltage = 0, pullupValue=10
     with open(thermistorValuesFilename, mode='r') as inp:
         reader = csv.reader(inp)
         tempData = {float(rows[1]): float(rows[0]) for rows in reader}
-    print(tempData)
+    # print(tempData)
     resistances = tempData.keys()
 
     # Interpolate
